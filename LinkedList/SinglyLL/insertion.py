@@ -26,6 +26,11 @@ class SinglyLL:
             current = current.next
         current.next = newNode
 
+    def pushRec(self, new_data):
+        if self.next is None:
+            self.next = Node(new_data)
+        self.next.pushRec(new_data)
+
     def countElement(self):
         count = 0
         current = self.head
@@ -74,18 +79,41 @@ class SinglyLL:
             current = current.next
         return -1
 
+    def removeKthElement(self, n):
+        slow = self.head
+        fast = self.head
+        for i in range(1, n+1):
+            fast = fast.next
+        while fast.next is not None:
+            slow = slow.next
+            fast = fast.next
+        slow.next = slow.next.next
+
+    def utilSumRec(self, head):
+        if head is None:
+            return 0
+        return head.data + self.utilSumRec(head.next)
+
+    def sumRec(self):
+        return self.utilSumRec(self.head)
+
 
 llist = SinglyLL()
-# llist.head = Node(3)
+llist.head = Node(3)
 llist.push(12)
 llist.push(8)
 llist.push(18)
 llist.push(4)
 llist.push(4)
 llist.push(13)
+llist.printList()
+# llist.countElement()
+# print(llist.maxElement())
+# print(llist.findCount())
+# print(llist.findMaxRecur())
+# print(llist.findRepeatedElements())
+# llist.removeKthElement(3)
+# llist.pushRec(12)
+# llist.pushRec(14)
 # llist.printList()
-llist.countElement()
-print(llist.maxElement())
-print(llist.findCount())
-print(llist.findMaxRecur())
-print(llist.findRepeatedElements())
+print(llist.sumRec())
