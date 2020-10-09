@@ -16,13 +16,24 @@ def countNodes(root):
     count = 0
     while len(queue) > 0:
         node = queue.pop(0)
-
         count += 1
         if node.right is not None:
             queue.append(node.right)
         if node.left is not None:
             queue.append(node.left)
     return count
+
+
+def countRecur(root):
+    if root is None:
+        return 0
+    return (1 + countRecur(root.left) + countRecur(root.right))
+
+
+def countEleRec(root):
+    if root is None:
+        return 0
+    return 1 + countEleRec(root.left) + countEleRec(root.right)
 
 
 root = Node(2)
@@ -34,3 +45,5 @@ root.left.right.right = Node(11)
 root.right.right = Node(9)
 root.right.right.left = Node(4)
 print(countNodes(root))
+print(countRecur(root))
+print(countEleRec(root))

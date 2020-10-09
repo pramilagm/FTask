@@ -21,7 +21,6 @@ def isBinaryUtl(root, left, right):
 
 def isBinaryIter(root):
     stack, inorder = [], float('-inf')
-
     while stack or root:
         while root:
             stack.append(root)

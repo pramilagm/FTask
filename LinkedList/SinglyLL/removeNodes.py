@@ -40,8 +40,26 @@ class SinglyLL:
                 return
             prev.next = current.next
             current = prev.next
+# find an element
+# Iterative solution
+
+    def findElement(self, key):
+        current = self.head
+        while current:
+            if current.data == key:
+                return True
+            current = current.next
+        return False
+
+    def findElementRec(self, key):
+        if self.head is None:
+            return False
+        if self.head.data == key:
+            return True
+        return self.findElement(self.head.next, key)
 
 
+# recursive solution
 llist = SinglyLL()
 llist.head = Node(2)
 llist.push(2)
@@ -53,3 +71,4 @@ llist.push(2)
 llist.push(7)
 llist.removeNodesValue(2)
 llist.printList()
+print(llist.findElement(2))

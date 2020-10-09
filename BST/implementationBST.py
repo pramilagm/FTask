@@ -8,7 +8,7 @@ class Node:
 def insertionBST(root, node):
     if root is None:
         root = node
-        return root
+        return
     else:
         if root.val < node.val:
             if root.right is None:
@@ -30,7 +30,6 @@ def findMinNode(node):
 
 
 def deleteBST(root, key):
-
     if root is None:
         return root
     if root.val > key:
@@ -51,6 +50,16 @@ def deleteBST(root, key):
         # Delete the inorder successor
         root.right = deleteBST(root.right, temp.val)
     return root
+
+# recursive solution to find branch sum
+
+
+def totalSum(root):
+    if root is None:
+        return 0
+    return root.val + totalSum(root.left) + totalSum(root.right)
+
+# Iterative solution
 
 
 def inorder(root):
@@ -74,9 +83,11 @@ insertionBST(r, Node(40))
 insertionBST(r, Node(70))
 insertionBST(r, Node(60))
 insertionBST(r, Node(80))
-inorder(r)
-print('----------------------After deletion')
-deleteBST(r, 20)
+# inorder(r)
+# print('----------------------After deletion')
+# deleteBST(r, 20)
 
-# Print inoder traversal of the BST
-inorder(r)
+# # Print inoder traversal of the BST
+# inorder(r)
+print(totalSum(r))
+print(totalSumIte(r))

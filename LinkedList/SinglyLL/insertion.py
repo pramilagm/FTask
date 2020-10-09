@@ -26,10 +26,13 @@ class SinglyLL:
             current = current.next
         current.next = newNode
 
+    def pushRecurHelper(self, head, new_data):
+        if head is None:
+            return Node(new_data)
+        return self.pushRecurHelper(head.next, new_data)
+
     def pushRec(self, new_data):
-        if self.next is None:
-            self.next = Node(new_data)
-        self.next.pushRec(new_data)
+        return self.pushRecurHelper(self.head, new_data)
 
     def countElement(self):
         count = 0
@@ -89,6 +92,7 @@ class SinglyLL:
             fast = fast.next
         slow.next = slow.next.next
 
+# to find sum recursively
     def utilSumRec(self, head):
         if head is None:
             return 0
@@ -96,24 +100,39 @@ class SinglyLL:
 
     def sumRec(self):
         return self.utilSumRec(self.head)
+# reverse the linked list recursively
+
+    def reverseUtil(self, current, prev):
+        if current.next is None:
+            self.head = current
+            current.next = prev
+            return
+        next = current.next
+        current.next = prev
+        self.reverseUtil(next, current)
+
+    def reverseLL_Rec(self):
+        if self.head is None:
+            return
+        return self.reverseUtil(self.head, None)
 
 
 llist = SinglyLL()
 llist.head = Node(3)
-llist.push(12)
-llist.push(8)
-llist.push(18)
-llist.push(4)
-llist.push(4)
-llist.push(13)
-llist.printList()
+# llist.push(12)
+# llist.push(8)
+# llist.push(18)
+# llist.push(4)
+# llist.push(4)
+# llist.push(13)
 # llist.countElement()
 # print(llist.maxElement())
 # print(llist.findCount())
 # print(llist.findMaxRecur())
 # print(llist.findRepeatedElements())
 # llist.removeKthElement(3)
-# llist.pushRec(12)
-# llist.pushRec(14)
-# llist.printList()
-print(llist.sumRec())
+llist.pushRec(12)
+llist.pushRec(14)
+# llist.reverseLL_Rec()
+llist.printList()
+# print(llist.sumRec())
